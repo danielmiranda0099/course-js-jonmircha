@@ -1,0 +1,48 @@
+<html>
+
+<script>
+/*
+ for in --> Me permite recorres los atributos y las propiedades de un objeto
+ for of --> Me permite recorres todos los elementos de cualquier objeto. 
+*/
+
+const daniel = {
+	nombre: "Daniel",
+	apellido: "Miranda",
+	edad: 24,
+	celular: "3008891708"
+	};
+
+// ACCEDIENDO A LA PROPIEDAD
+for(const propiedad in daniel){
+	console.log(propiedad);
+}
+
+// ACCEDIENDO AL VALOR
+console.log("\n\nACCEDIENDO AL VALOR");
+for(const propiedad in daniel){
+	console.log(daniel[propiedad]);
+}
+
+
+//unido ambos metodos
+console.log("\n\n");
+for(const propiedad in daniel){
+	console.log(`la propiedad ${propiedad} tiene el valor de ${daniel[propiedad]}`);
+}
+
+
+//for of
+const cadena = [10, 20, 30, 40, 50];
+console.log("\n\n");
+for(const caracter of cadena){
+	console.log(caracter);
+}
+
+for(const propiedad of daniel){
+	console.log(daniel[propiedad]);
+}
+
+</script>
+
+</html>

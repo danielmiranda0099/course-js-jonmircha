@@ -1,0 +1,32 @@
+<html>
+
+<script>
+
+//Funcion constructora
+function Animal(nombre, genero){
+	//Atributos
+	this.nombre = nombre;
+	this.genero = genero;
+
+	//Metodos (ES MEJOR QUE ESTOS ESTEN EN EL PROTOTIPO)
+	/*this.sonar = function (){
+		console.log('Hago sonidos');
+	}*/
+}
+
+Animal.prototype.sonar = function () {
+	console.log('Hago sonidos uwu');
+}
+
+const luna = new Animal('luna', 'Hembra');
+const peque = new Animal('pequeñin', 'Macho');
+
+console.log(luna);
+console.log(peque);
+
+luna.sonar();
+
+
+</script>
+
+</html>

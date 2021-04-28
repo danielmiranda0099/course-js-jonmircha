@@ -1,0 +1,33 @@
+<html>
+
+<script>
+
+/*Las expresiones regulares es una secuencia de caracteres que 
+  forman un patron de busqueda */
+
+let texto = "Atravesaron las tierras de los hobbits y llegaron a un bosquecillo donde se disponían a acampar. De pronto vislumbraron una luz y decidieron que , ya que el trabajo del hobbit era el de saqueador, Bilbo fuera a averiguar que era esa luz. Y allá fue Bilbo, y descubrió que en aquel bosquecillo habían acampado tres trolls y habían hecho un fuego. Bilbo fue descubierto y poco después los enanos, pero gracias a la astucia de Gandalf, que hace que los trolls se conviertan en hobbit piedra con la luz del sol, consiguen salir ilesos de esta aventura."
+
+let expreRegu = new RegExp("hobbit", "ig");
+let expreRegu2 = /habbit/;
+
+console.log(expreRegu.test(texto));
+console.log(expreRegu.exec(texto));
+
+
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

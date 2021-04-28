@@ -1,0 +1,33 @@
+<html>
+
+<script>
+/*Los parametros REST son una forma virtualmente de ir agregando 
+parametros infinitos a una funcion o dentro de un Array 
+con tres (...) puntos suspensivos hago el parametro REST*/
+
+//REST
+function sumar(a, b, ...c){
+	let resultado = a + b;
+	c.forEach(function(n){
+		resultado += n;
+	});
+	
+	return resultado;
+}
+
+console.log(sumar(1, 2, 1, 7));
+
+
+/* El operador de propagacion o el step operation nos permite que 
+una expresion la podamos expandir en situaciones donde alla que 
+almacenar multiples elementos. */
+
+//SPREAD
+const arreglo1 = [1, 2, 3, 4, 5];
+const arreglo2 = [6, 7, 8, 9, 0];
+
+const arreglo3 = [...arreglo1, ...arreglo2]
+console.log(arreglo3)
+</script>
+
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD AJAX OBJECT XMLHTTPREQUEST</title>
+</head>
+<body>
+    <h1>CRUD</h1>
+    <section class="crud">
+        <article>
+            <h2 class="crud-title">Agregar Personaje de One Piece</h2>
+            <form action="" class="crud-form">
+                <input type="text" name="nombre" placeholder="Nombre" required> <br>
+                <input type="text" name="habilidad" placeholder="Habilidad"> <br>
+                <input type="text" name="descripcion" placeholder="Descripcion"> <br>
+                <input type="submit" value="Enviar">
+                <input type="hidden" name="id">
+            </form>
+        </article>
+
+        <article>
+            <h2>Ver Pirata</h2>
+            <table class="crud-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Habilidad</th>
+                        <th>Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </article>
+    </section>
+
+    <template id="crud-template">
+        <tr>
+            <td class="name"></td>
+            <td class="habilidad"></td>
+            <td class="descripcion"></td>
+            <td>
+                <button class="edit">Editar</button>
+                <button class="delete">Eliminar</button>
+            </td>
+        </tr>
+    </template>
+
+
+    <script>
+        const d = document;
+        const $table = d.querySelector('.crud-table');
+        const $form = d.querySelector('.crud-form');
+        const $title = d.querySelector('.crud-title');
+        const $template = d.querySelector('#crud-template').content;
+        const $fragment = d.createDocumentFragment();
+
+        const getAll = async () => {
+            try {
+                let res = await fetch('http://localhost:3000/mugiwaras');
+                let json = await res.json();
+
+                if(!res.ok){
+                    throw {
+                        status: res.status,
+                        statusText: res.statusText
+                    }
+                }
+
+                console.log(json);
+                json.forEach( el => {
+                    $template.querySelector(".name").textContent = el.nombre;
+                    $template.querySelector(".habilidad").textContent = el.habilidad;
+                    $template.querySelector(".descripcion").textContent = el.descripcion;
+                    $template.querySelector(".edit").dataset.id = el.id;
+                    $template.querySelector(".edit").dataset.name = el.nombre;
+                    $template.querySelector(".edit").dataset.habilidad = el.habilidad;
+                    $template.querySelector(".edit").dataset.descripcion = el.descripcion;
+                    $template.querySelector(".delete").dataset.id = el.id;
+
+                    let $clone = d.importNode($template, true);
+                    $fragment.appendChild($clone);
+                });
+
+                $table.querySelector("tbody").appendChild($fragment);
+
+            } catch (err) {
+                let message = err.statusText || "Ocurrio un ERROR";
+                $table.insertAdjacentHTML('afterend', `<p><b>ERROR ${err.status}: ${message}</b></p>`);
+            }
+        }
+
+        d.addEventListener('DOMContentLoaded', getAll);
+
+        d.addEventListener('submit', async e => {
+            if(e.target == $form){
+                e.preventDefault();
+
+                if(!e.target.id.value){
+                    //CREATE --- POST
+                    try {
+                        let options = {
+                            method: 'POST',
+                            headers:{
+                                'Content-type': 'application/json;charset=utf-8'
+                            },
+                            body: JSON.stringify({
+                                nombre: e.target.nombre.value,
+                                habilidad: e.target.habilidad.value,
+                                descripcion: e.target.descripcion.value
+                            })
+                        };
+                        let res = await fetch('http://localhost:3000/mugiwaras', options);
+                        let json = await res.json();
+
+
+                        if(!res.ok){
+                            throw {
+                                status: res.status,
+                                statusText: res.statusText
+                            }
+                        }
+
+                        location.reload();
+
+                    } catch (err) {
+                        let message = err.statusText || "Ocurrio un ERROR";
+                        $form.insertAdjacentHTML('afterend', `<p><b>ERROR ${err.status}: ${message}</b></p>`);
+                    }
+                }else{
+                    //UPDATE --- PUT
+                    try {
+                        let options = {
+                            method: 'PUT',
+                            headers:{
+                                'Content-type': 'application/json;charset=utf-8'
+                            },
+                            body: JSON.stringify({
+                                nombre: e.target.nombre.value,
+                                habilidad: e.target.habilidad.value,
+                                descripcion: e.target.descripcion.value
+                            })
+                        };
+                        let res = await fetch(`http://localhost:3000/mugiwaras/${e.target.id.value}`, options);
+                        let json = await res.json();
+
+                        if(!res.ok){
+                            throw {
+                                status: res.status,
+                                statusText: res.statusText
+                            }
+                        }
+
+                        location.reload();
+
+                    } catch (err) {
+                        let message = err.statusText || "Ocurrio un ERROR";
+                        $form.insertAdjacentHTML('afterend', `<p><b>ERROR ${err.status}: ${message}</b></p>`);
+                    }
+                }
+            }
+        });
+
+        d.addEventListener('click', async e => {
+            if(e.target.matches('.edit')){
+                $title.textContent = "Editando Pirata";
+                $form.id.value = e.target.dataset.id;
+                $form.nombre.value = e.target.dataset.name;
+                $form.habilidad.value = e.target.dataset.habilidad;
+                $form.descripcion.value = e.target.dataset.descripcion;
+            }
+
+            
+            if(e.target.matches('.delete')){
+                let isDelete = confirm('¿Esta seguro que desea eliminar este pirata?');
+
+                if(isDelete){
+                    //DELETE
+                    try {
+                        let options = {
+                            method: 'DELETE',
+                            headers:{
+                                'Content-type': 'application/json;charset=utf-8'
+                            }
+                        };
+                        let res = await fetch(`http://localhost:3000/mugiwaras/${e.target.dataset.id}`, options);
+                        let json = await res.json();
+
+                        if(!res.ok){
+                            throw {
+                                status: res.status,
+                                statusText: res.statusText
+                            }
+                        }
+
+                        location.reload();
+
+                    } catch (err) {
+                        let message = err.statusText || "Ocurrio un ERROR";
+                        alert(`ERROR ${err.status}: ${message}`);
+                    }
+                    
+
+                }
+            }
+        });
+
+
+    </script>
+</body>
+</html>

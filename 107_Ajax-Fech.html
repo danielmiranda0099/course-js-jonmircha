@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>API FECH</h1>
+    <ol id="fetch"></ol>
+
+    <script>
+
+        const $fecth = document.querySelector('#fetch');
+        const $fragment = document.createDocumentFragment();
+        let URL = 'https://jsonplaceholder.typicode.com/users';
+
+        fetch(URL).then( res => {
+            console.log(res);
+            return res.ok ? res.json() : Promise.reject(res);
+        }).then( (json) => {
+            console.log(json);
+            json.forEach( el => {
+                const $li = document.createElement('li');
+                $li.innerHTML = `${el.name} ----- ${el.email} ----- ${el.phone}`;
+                $fragment.appendChild($li);
+            });
+
+            $fecth.appendChild($fragment);
+
+        }).catch( err => {
+            let message = err.statusText || "ocurrion un ERROR"
+            $fecth.innerHTML = `ERROR ${err.status}: ${message} :(`;
+            console.log("esto es un ERROR", err);
+        }).finally( () => {
+            console.log('Me ejecuto siempre jeje');
+        }
+        );
+    </script>
+</body>
+</html>

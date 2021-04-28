@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>API FECH ASYNC AWAIT</h1>
+    <ol id="fetch-async"></ol>
+
+    <script>
+        const $fetch = document.querySelector('#fetch-async');
+        const $fragment = document.createDocumentFragment();
+        let URL = 'https://jsonplaceholder.typicode.com/users';
+
+        async function getData(){
+            try {
+                let res = await fetch(URL);
+                let json = await res.json();
+
+                console.log(res, json);
+
+                if(!res.ok){
+                    //throw new Error('Ocurrio un ERROR al solicitar los Datos');
+                    if(!res.ok) throw{
+                        status: res.status,
+                        statusText: res.statusText
+                    }
+                }
+
+                json.forEach(el => {
+                    const $li = document.createElement('li');
+                    $li.innerHTML = `${el.name} ----- ${el.email} ----- ${el.phone}`;
+                    $fragment.appendChild($li);
+                });
+
+                $fetch.appendChild($fragment);
+            }catch(err){
+                let message = err.statusText || "Ocurrio un ERRORal solicitar los datos."
+                $fetch.innerHTML = `Hay un ERROR ${err.status} :C : ${message}`;
+            }finally{
+                console.log('yo me ejecuto siempre');
+            }
+        }
+
+        getData();
+
+    </script>
+</body>
+</html>

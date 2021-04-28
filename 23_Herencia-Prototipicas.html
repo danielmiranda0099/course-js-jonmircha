@@ -1,0 +1,62 @@
+<html>
+
+<script>
+
+//Funcion constructora
+function Animal(nombre, genero){
+	//Atributos
+	this.nombre = nombre;
+	this.genero = genero;
+
+	//Metodos (ES MEJOR QUE ESTOS ESTEN EN EL PROTOTIPO)
+	/*this.sonar = function (){
+		console.log('Hago sonidos');
+	}*/
+}
+
+Animal.prototype.sonar = function () {
+	console.log('Hago sonidos uwu');
+}
+
+/*const luna = new Animal('luna', 'Hembra');
+const peque = new Animal('pequeñin', 'Macho');*/
+
+
+//**********HERENCIA PROTOTIPICA**************
+
+function Perro(nombre, genero, tamanio) {
+	this.super = Animal;
+ 	this.super(nombre, genero);
+	this.tamanio = tamanio;
+}
+
+//Perro esta heredando de animal
+Perro.prototype = new Animal();
+Perro.prototype.constructor = Perro;
+
+//SOBREESCRITURA del metodo del prototipo padre
+Perro.prototype.sonar = function () {
+	console.log('soy un perro wuau wuau');
+}
+
+const timo = new Perro('Timo', 'Macho', 'grande');
+console.log(timo);
+
+
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

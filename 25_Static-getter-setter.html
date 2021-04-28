@@ -1,0 +1,71 @@
+<html>
+
+<script>
+
+class Animal {
+	constructor(nombre, genero = 'indefinido'){
+		this.nombre = nombre;
+		this.genero = genero;
+		this.especie = null;
+	}
+
+	
+	sonido () {
+		console.log('hago sonidos porque estoy vivito');
+	}
+
+	saludar () {
+		console.log(`Hello my name is ${this.nombre}`);
+	}
+
+	//STATIC
+	static descripcion(){
+		console.log('Los animales son seres vivos del planeta tierra ;)');
+	}
+
+
+	/*Los setters y getters son metodos especiales que permiten
+	establecer y obtener valores de atributos de la clase */
+
+	get getEspecie(){
+		return this.especie;
+	}
+
+	set setEspecie(especie){
+		this.especie = especie;
+	}
+}
+
+// STATIC accediendo a un METODO sin INSTANCIAR  la clase
+Animal.descripcion();
+
+
+
+const animal = new Animal('luna', 'Hembra');
+
+//se accede a los get/set como PROPIEDADES no como funciones aunque lo sean
+
+let especie = animal.getEspecie;
+console.log(especie);
+
+animal.setEspecie = 'Canino';
+especie = animal.getEspecie;
+console.log(especie);
+
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

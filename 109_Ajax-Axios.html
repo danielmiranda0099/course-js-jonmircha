@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>AJAX AXIOS</h1>
+    <ol id="axios"></ol>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const $axios = document.getElementById('axios');
+        const $fragment = document.createDocumentFragment();
+        let URL = 'https://jsonplaceholder.typicode.com/user';
+
+        axios.get(URL)
+        .then( res => {
+            console.log(res);
+
+            let json = res.data;
+
+            json.forEach( el => {
+                const $li = document.createElement('li');
+                $li.innerHTML = `${el.name} ----- ${el.email} ----- ${el.phone}`;
+                $fragment.appendChild($li);
+            });
+
+            $axios.appendChild($fragment);
+        })
+        .catch( err => {
+            let message = err.response.statusText || "Ocurrio un ERRORal solicitar los datos."
+            $axios.innerHTML = `Hay un ERROR ${err.response.status} :C : ${message}`;
+        })
+        .finally( () => {
+            console.log('oli siempre me ejecuto');
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+
+
+<script>
+/*  TODO ES UN OBJETO EN JAVA SCRIPT 
+*/
+
+// solo con definir {} ya es un objeto vacio
+// un objeto en javascript es una coleccion de llave valor
+const a = new Object();
+const b = {
+}
+const jon = {
+	nombre: "jon",
+	apellido: "mircha",
+	edad: 35,
+	pasatiempos: "Dar clases",
+	contacto: {
+			email: "jonmircha@gmail.com",
+			twitter: "@jonmircha",
+			movil: "3126144183"
+		},
+	saludar: function(){
+		console.log('hola :)');
+		}
+}
+
+console.log(jon);
+
+//se puede acceder a un valor con [] o con .
+console.log(jon["nombre"]);
+console.log(jon.apellido);
+console.log(jon["saludar"]);
+//Para acceder a una funcion de un objeto de debe colocar de seguido un ()
+jon.saludar()
+
+</script>
+
+
+</html>

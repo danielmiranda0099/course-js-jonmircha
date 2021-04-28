@@ -1,0 +1,114 @@
+{
+  "mugiwaras": [
+    {
+      "id": 1,
+      "nombre": "Mokey D Luffy",
+      "habilidad": "Fruta de Gomu-Gomu no mi",
+      "descripcion": "Capitan de los Mugiwara"
+    },
+    {
+      "id": 2,
+      "nombre": "Zoro Roronoa",
+      "habilidad": "Espadachin",
+      "descripcion": "Espadachin de la banda de los mugiwara"
+    },
+    {
+      "id": 3,
+      "nombre": "Dios Usopp",
+      "habilidad": "Tirador",
+      "descripcion": "Tirador de la banda de los miguwara"
+    },
+    {
+      "id": 4,
+      "nombre": "Sanji",
+      "habilidad": "Patadas",
+      "descripcion": "Cocinero de la banda de los mugiwara"
+    },
+    {
+      "id": 5,
+      "nombre": "Nami",
+      "habilidad": "Controla el clima",
+      "descripcion": "Navegante de los mugiwara"
+    },
+    {
+      "id": 6,
+      "nombre": "Chopper",
+      "habilidad": "Fruta del diablo",
+      "descripcion": "Doctor de los mugiwara"
+    },
+    {
+      "id": 7,
+      "nombre": "Robin",
+      "habilidad": "Fruta del diablo",
+      "descripcion": "Arqueologa de los mugiwara"
+    },
+    {
+      "id": 8,
+      "nombre": "Franky",
+      "habilidad": "Cybort",
+      "descripcion": "Carpintero de los mugiwara"
+    },
+    {
+      "id": 9,
+      "nombre": "Brook",
+      "habilidad": "Fruta del diablo",
+      "descripcion": "Musico de los mugiwara"
+    },
+    {
+      "nombre": "Jinbe",
+      "habilidad": "Gyojin",
+      "descripcion": "Gyojin de los mugiwaras",
+      "id": 10
+    },
+    {
+      "nombre": "Daniel",
+      "habilidad": "hacker",
+      "descripcion": "programador de los mugiwara",
+      "id": 11
+    }
+  ],
+  "shichibukai": [
+    {
+      "id": 1,
+      "nombre": "Dracule Mihawk",
+      "habilidad": "Espadachin"
+    },
+    {
+      "id": 2,
+      "nombre": "Crocodile",
+      "habilidad": "Fruta del dablo de arena"
+    },
+    {
+      "id": 3,
+      "nombre": "Barba Negra",
+      "habilidad": "Fruta del Diablo de Oscuridad"
+    },
+    {
+      "id": 4,
+      "nombre": "Bartholomew Kuma",
+      "habilidad": "Fruta del diablo Nikyu-Nikyu no mi"
+    },
+    {
+      "id": 5,
+      "nombre": "Boa Hancock",
+      "habilidad": "Fruta del diablo Mero-Mero no mi"
+    },
+    {
+      "id": 6,
+      "nombre": "Mori",
+      "habilidad": "Fruta del diablo Kage-Kage no mi"
+    },
+    {
+      "id": 7,
+      "nombre": "Doflamingo",
+      "habilidad": "Fruta del diablo Ito-Ito no mi"
+    }
+  ],
+  "yonkou": [
+    {
+      "id": 1,
+      "nombre": "shanks",
+      "habilidad": "desconocido"
+    }
+  ]
+}

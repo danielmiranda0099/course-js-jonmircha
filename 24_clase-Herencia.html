@@ -1,0 +1,65 @@
+<html>
+
+<script>
+
+class Animal {
+	constructor(nombre, genero = 'indefinido'){
+		this.nombre = nombre;
+		this.genero = genero;
+	}
+
+	
+	sonido () {
+		console.log('hago sonidos porque estoy vivito');
+	}
+
+	saludar () {
+		console.log(`Hello my name is ${this.nombre}`);
+	}
+}
+
+
+//HERENCIA
+class Perro extends Animal {
+	constructor(nombre, genero, tamanio){
+		/* Con el metodo SUPER() se llama el 
+		   constructor de la clase padre. */
+		super(nombre, genero);
+
+		this.tamanio = tamanio;
+	}
+
+	//SOBREESCRITURA del metodo sonido
+	sonido(){
+		console.log('guau guau guau');
+	}
+}
+
+
+const animal = new Animal('delfin');
+const luna = new Perro('luna', 'Hembra', 'Mediana');
+
+console.log(animal);
+console.log(luna);
+
+animal.sonido();
+luna.sonido();
+
+
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
