@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background:cadetblue;
+        }
+
+        .contact-form{
+            --form-ok-color: green;
+            --form-error-color: red;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+        }
+
+        .contact-form > *{
+            padding: 0.5rem;
+            margin: 1rem auto;
+            display: block;
+            width: 100%;
+        }
+
+        .contact-form textarea{
+            resize: none;
+        }
+
+        .contact-form legend,
+        .contact-form-loader,
+        .contact-form-response{
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .contact-form input[type="submit"]{
+            width: 50%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .contact-form [required]:valid{
+            border: thin solid var(--form-ok-color);
+        }
+
+        .contact-form [required]:invalid{
+            border: thin solid var(--form-error-color);
+        }
+
+        .contact-form-error{
+            margin-top: -1rem;
+            font-size: 80%;
+            background-color: red;
+            color: #fff;
+            transition: all 0.8 ease;
+        }
+
+        .contact-form-error.is-active{
+            display: block;
+            animation: show-message 1s 1 normal 0s ease-out both;
+        }
+
+        .none{
+            display: none;
+        }
+
+        @keyframes show-message{
+            0%{
+                visibility: hidden;
+                opacity: 0;
+            }
+            100%{
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <form class="contact-form">
+        <legend>envianos tus comentarios</legend>
+        <input type="text" name="name" placeholder="escribe tu nombre" 
+            title="El nombre solo acepta letras y espacios enb blanco" 
+            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+            required>
+        <input type="email" name="email" placeholder="Escribe tu email" 
+        title="Email incorrecto"
+        pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+        required>
+        <input type="text" name="subject" placeholder="Asunto a tratar" 
+        title="El asunto es requerido"
+        required>
+        <textarea name="comments" cols="50" rows="10" placeholder="Escribe tu comentario"
+        data-pattern="^.{1,255}$" title="Tu comentario no debe exceder los 255 caracteres"
+        required></textarea>
+        <input type="submit" value="Enviar">
+
+
+        <!-- link svg: https://samherbert.net/svg-loaders/ -->
+        <div class="contact-form-loader none">
+            <img src="./assets/tail-spin.svg" alt="cargando">
+        </div>
+
+        <div class="contact-form-response none">
+            <p>los datos han sido enviado</p>
+        </div>
+    </form>
+</body>
+</html>
